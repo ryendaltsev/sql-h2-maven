@@ -3,7 +3,15 @@ package com.softserve.academy;
 
 import java.text.SimpleDateFormat;
 import java.sql.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "person")
 public class Person {
 
     private static final SimpleDateFormat sm = new SimpleDateFormat("dd-mm-yyyy");
@@ -13,10 +21,20 @@ public class Person {
 
     static int counter = 1;
 
-    private final int _id;
-    private final Date _birthday;
-    private final String _name;
-    private final String _sex;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int _id;
+    @Column(name = "birthday")
+    private Date _birthday;
+    @Column(name = "name")
+    private String _name;
+    @Column(name = "sex")
+    private String _sex;
+
+    public Person() {
+
+    }
 
     @Override
     public String toString() {
